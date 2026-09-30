@@ -1,0 +1,28 @@
+{{- $groups := slice
+  (dict "key" "supervisors" "title" "Supervisors")
+  (dict "key" "phds" "title" "PhD candidates")
+  (dict "key" "other_members" "title" "Other consortium members")
+-}}
+<section id="people" class="section alt">
+  <div class="container">
+    <h2>People</h2>
+    {{- range $groups }}
+      {{- $members := index hugo.Data.people .key }}
+      {{- if $members }}
+      <h3>{{ .title }}</h3>
+      <ul class="cards">
+        {{- range $members }}
+        <li class="card person">
+          {{- partial "person-photo.html" . }}
+          <p class="card-title">
+            {{- if .url }}<a href="{{ .url }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end -}}
+          </p>
+          {{- with .affiliation }}<p class="muted">{{ . }}</p>{{ end }}
+          {{- with .topic }}<p>{{ . }}</p>{{ end }}
+        </li>
+        {{- end }}
+      </ul>
+      {{- end }}
+    {{- end }}
+  </div>
+</section>

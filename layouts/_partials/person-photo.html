@@ -1,0 +1,20 @@
+{{- /*
+  Photo for one person from data/people.yaml. `photo` is a file name in
+  assets/images/people/. Photos are cropped to a square (keeping the top, where
+  the face usually is) so every card looks the same. Without a photo, the
+  person's initials are shown instead.
+*/}}
+{{- $img := "" }}
+{{- with .photo }}
+  {{- $img = resources.Get (printf "images/people/%s" .) }}
+  {{- if not $img }}{{ warnf "people.yaml: photo %q not found in assets/images/people/" . }}{{ end }}
+{{- end }}
+{{- if $img }}
+  {{- if ne $img.MediaType.SubType "svg" }}{{ $img = $img.Fill "240x240 Top webp" }}{{ end }}
+  <img class="person-photo" src="{{ $img.RelPermalink }}" alt="Photo of {{ .name }}" loading="lazy" width="120" height="120">
+{{- else }}
+  {{- $parts := split .name " " }}
+  {{- $initials := substr (index $parts 0) 0 1 }}
+  {{- if gt (len $parts) 1 }}{{ $initials = print $initials (substr (index $parts (sub (len $parts) 1)) 0 1) }}{{ end }}
+  <span class="person-photo person-initials" aria-hidden="true">{{ upper $initials }}</span>
+{{- end }}

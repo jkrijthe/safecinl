@@ -1,0 +1,19 @@
+{{ define "main" }}
+  <header class="hero">
+    <div class="container">
+      <h1>{{ site.Title }}</h1>
+      {{ with site.Params.tagline }}<p class="tagline">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+
+  <section id="about" class="section">
+    <div class="container prose">
+      {{ .Content }}
+    </div>
+  </section>
+
+  {{ partial "people.html" . }}
+  {{ partial "projects.html" . }}
+  {{ partial "publications.html" . }}
+  {{ partial "bookclub.html" . }}
+{{ end }}

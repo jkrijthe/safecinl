@@ -1,0 +1,25 @@
+{{- $bc := hugo.Data.bookclub }}
+<section id="bookclub" class="section">
+  <div class="container">
+    <h2>Causal book club</h2>
+    {{- with $bc.description }}<div class="prose">{{ . | markdownify }}</div>{{ end }}
+  </div>
+
+  {{- with $bc.sessions }}
+  {{- /* Which session is current is decided in the browser by assets/js/bookclub.js. */}}
+  <div class="carousel" data-carousel>
+    <div class="carousel-track" tabindex="0" role="region" aria-label="Book club sessions">
+      {{- range sort . "date" }}{{ partial "bookclub-session.html" . }}{{ end }}
+    </div>
+    <div class="container carousel-controls">
+      <button type="button" data-prev aria-label="Previous session">&larr;</button>
+      <button type="button" data-current>Current session</button>
+      <button type="button" data-next aria-label="Next session">&rarr;</button>
+    </div>
+  </div>
+  {{- else }}
+  <div class="container">
+    <p class="muted">No sessions planned yet. Check back soon.</p>
+  </div>
+  {{- end }}
+</section>

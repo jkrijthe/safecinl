@@ -1,0 +1,58 @@
+{{- /*
+  Start/end/location come from the session, falling back to `defaults` in
+  data/bookclub.yaml. A date without a time and no default time is an all-day
+  session: current until the end of that day.
+*/}}
+{{- $d := hugo.Data.bookclub.defaults | default dict }}
+{{- $date := .date }}
+{{- $endStr := .end }}
+{{- if and (not (strings.Contains $date "T")) $d.time }}
+  {{- $date = print $date "T" $d.time }}
+  {{- if not $endStr }}{{ $endStr = $d.end }}{{ end }}
+{{- end }}
+{{- /* An end time without a date ("11:00") is on the session's day. */}}
+{{- if and $endStr (not (strings.Contains $endStr "-")) }}
+  {{- $endStr = print (substr $date 0 10) "T" $endStr }}
+{{- end }}
+{{- $location := or .location $d.location }}
+{{- $allDay := not (strings.Contains $date "T") }}
+{{- $start := partial "func/parse-time.html" $date }}
+{{- $end := $start.Add (time.ParseDuration (cond $allDay "24h" "2h")) }}
+{{- with $endStr }}{{ $end = partial "func/parse-time.html" . }}{{ end }}
+{{- $iso := "2006-01-02T15:04:05Z07:00" }}
+{{- $title := or .title .reading.title }}
+<article class="session" data-start="{{ $start.Format $iso }}" data-end="{{ $end.Format $iso }}"{{ if $allDay }} data-all-day{{ end }}>
+  <div class="session-when">
+    <span class="session-day">{{ $start | time.Format "2" }}</span>
+    <span class="session-month">{{ $start | time.Format "Jan 2006" }}</span>
+  </div>
+  <div class="session-body">
+    <span class="session-status" data-status></span>
+    <p class="card-title">
+      {{- if and (not .title) .reading.link }}<a href="{{ .reading.link }}">{{ $title }}</a>{{ else }}{{ $title }}{{ end -}}
+    </p>
+    {{- if not .title }}{{ with .reading.authors }}<p class="muted">{{ . }}</p>{{ end }}{{ end }}
+    <dl>
+      <dt>When</dt>
+      <dd>
+        {{- if $allDay }}{{ $start | time.Format "Monday 2 January 2006" }}
+        {{- else }}{{ $start | time.Format "Monday 2 January 2006, 15:04" }}
+          {{- if $endStr }}–{{ $end | time.Format "15:04" }}{{ end }}
+        {{- end -}}
+      </dd>
+      {{- with $location }}<dt>Where</dt><dd>{{ . }}</dd>{{ end }}
+      {{- /* With a separate session title, the reading gets its own row. */}}
+      {{- if and .title .reading }}
+        {{- with .reading }}
+        <dt>Reading</dt>
+        <dd>
+          {{- if .link }}<a href="{{ .link }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}
+          {{- with .authors }} ({{ . }}){{ end -}}
+        </dd>
+        {{- end }}
+      {{- end }}
+      {{- with .presenter }}<dt>Led by</dt><dd>{{ . }}{{ with $.format }} ({{ . }}){{ end }}</dd>{{ end }}
+      {{- with .prepare }}<dt>Prepare</dt><dd>{{ . | markdownify }}</dd>{{ end }}
+    </dl>
+  </div>
+</article>

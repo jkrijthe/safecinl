@@ -1,0 +1,23 @@
+# Partner institutions, shown as a row of logos in the About section.
+# Fields: name (required), url, logo: file name in assets/images/partners/.
+# Without a logo file the name is shown as text instead.
+
+- name: "Delft University of Technology"
+  url: "https://www.tudelft.nl/en/"
+  logo: "tu-delft.png"
+
+- name: "Erasmus MC"
+  url: "https://www.erasmusmc.nl/en"
+  logo: "erasmus-mc.svg"
+
+- name: "Erasmus University Rotterdam"
+  url: "https://www.eur.nl/en"
+  logo: "erasmus-university.svg"
+
+- name: "Leiden University Medical Center"
+  url: "https://www.lumc.nl/en/"
+  logo: "lumc.svg"
+
+- name: "Vrije Universiteit Amsterdam"
+  url: "https://vu.nl/en"
+  logo: "vu.png"

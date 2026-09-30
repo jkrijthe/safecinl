@@ -1,0 +1,32 @@
+<section id="publications" class="section alt">
+  <div class="container">
+    <h2>Publications</h2>
+    {{- with hugo.Data.publications }}
+      {{- $years := slice }}
+      {{- range . }}{{ $years = $years | append .year }}{{ end }}
+      {{- range sort (uniq $years) "value" "desc" }}
+        {{- $year := . }}
+        <h3>{{ $year }}</h3>
+        <ol class="publications">
+          {{- range where hugo.Data.publications "year" $year }}
+          <li>
+            <p class="card-title">
+              {{- if .url }}<a href="{{ .url }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end -}}
+            </p>
+            {{- with .authors }}<p>{{ . }}</p>{{ end }}
+            {{- with .venue }}<p class="muted"><em>{{ . }}</em></p>{{ end }}
+            {{- if or .pdf .code }}
+            <p class="links">
+              {{- with .pdf }}<a href="{{ . }}">PDF</a>{{ end }}
+              {{- with .code }}<a href="{{ . }}">Code</a>{{ end }}
+            </p>
+            {{- end }}
+          </li>
+          {{- end }}
+        </ol>
+      {{- end }}
+    {{- else }}
+      <p class="muted">No publications yet.</p>
+    {{- end }}
+  </div>
+</section>

@@ -1,0 +1,392 @@
+:root {
+  /* Palette: white, light blue, black. */
+  --bg: #ffffff;
+  --bg-alt: #f3f9fd;     /* light blue tint for alternating sections */
+  --fg: #111111;         /* body text */
+  --muted: #4a5560;
+  --heading: #3593d0;    /* light blue headings (readable at heading sizes) */
+  --accent: #1b6ea8;     /* links and small blue text: darker for readability */
+  --border: #d3e8f6;
+  --card: #ffffff;
+  --nav-bg: #cce6f6;     /* top bar: a slightly deeper light blue */
+  --nav-fg: #0b3d63;     /* dark blue for the top bar title and menu */
+  --nav-h: 4rem;
+  --maxw: 60rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { color: var(--heading); }
+
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Navigation */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  border-bottom: 1px solid #b3d8f0;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 1rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--nav-fg);
+  white-space: nowrap;
+}
+.brand:hover { text-decoration: none; }
+.brand-logo { height: 3rem; width: auto; display: block; }
+.nav ul {
+  display: flex;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+}
+.nav ul a { color: var(--nav-fg); font-weight: 600; white-space: nowrap; }
+.nav ul a:hover { text-decoration: underline; text-underline-offset: .3em; }
+@media (max-width: 60rem) {
+  /* The hero already shows the full name; give the menu the room on smaller screens. */
+  .brand-name { display: none; }
+  .brand-logo { height: 2.25rem; }
+  .nav ul { gap: .8rem; font-size: .9rem; }
+}
+@media (max-width: 30rem) {
+  /* Narrow phones: logo on its own row, menu below it. */
+  /* --nav-h is only used as the scroll offset for menu links here. */
+  :root { --nav-h: 6rem; }
+  .nav { height: auto; padding: .35rem 0; }
+  .nav-inner { display: grid; justify-items: center; align-content: center; gap: .2rem; }
+  .nav ul { flex-wrap: wrap; justify-content: center; gap: 0 .9rem; overflow: visible; line-height: 1.35; }
+}
+
+/* Hero */
+.hero {
+  padding: 5rem 0 4rem;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+}
+.hero h1 { font-size: clamp(2rem, 6vw, 3.25rem); margin: 0 0 .5rem; line-height: 1.15; }
+.tagline { font-size: 1.2rem; color: var(--muted); margin: 0; max-width: 40rem; }
+
+/* Sections */
+.section { padding: 4rem 0; }
+.section.alt { background: var(--bg-alt); }
+.section h2 { font-size: 1.9rem; margin: 0 0 1.5rem; }
+.section h3 { font-size: 1.2rem; margin: 2rem 0 1rem; }
+.prose { max-width: 42rem; }
+.prose h2 { font-size: 1.5rem; margin: 2rem 0 .75rem; }
+.prose h2:first-child { margin-top: 0; }
+
+.muted { color: var(--muted); }
+p { margin: 0 0 .5rem; }
+
+/* People */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  padding: 1rem 1.25rem;
+}
+.card p { margin: 0 0 .25rem; }
+.card-title { font-weight: 600; }
+
+.person { text-align: center; padding: 1.5rem 1.25rem; }
+/* Every photo is cropped to a square at build time and shown as the same-size circle. */
+.person-photo {
+  display: block;
+  width: 7.5rem;
+  height: 7.5rem;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border);
+}
+.person-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-alt);
+  color: var(--heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+/* Partner logos (About section) */
+.partners {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2.5rem;
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+.prose .partners { max-width: none; }
+.partners a { display: block; }
+.partners img { height: 3rem; width: auto; max-width: 11rem; object-fit: contain; display: block; }
+.partner-name {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 1rem;
+  border: 1px dashed var(--border);
+  border-radius: .4rem;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: .9rem;
+}
+
+/* Projects */
+.projects { display: grid; gap: 1.25rem; }
+.project {
+  --sup-cell: 5.5rem;   /* width of one supervisor (photo + name) */
+  --sup-row: 6.4rem;    /* height of one supervisor row, room for a two-line name */
+  display: grid;
+  grid-template-columns: 10rem 1fr auto;
+  padding: 0;
+  overflow: hidden;
+}
+/* PhD candidate: photo strip from the top of the card to the bottom. */
+.project-phd {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-alt);
+  border-right: 1px solid var(--border);
+}
+.project-phd-photo {
+  display: block;
+  flex: 1;
+  width: 100%;
+  min-height: 11rem;
+  object-fit: cover;
+  object-position: top;
+}
+.project-phd-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--heading);
+  font-size: 2.75rem;
+  font-weight: 700;
+}
+.project-phd-name {
+  margin: 0;
+  padding: .6rem .75rem;
+  text-align: center;
+  font-weight: 600;
+  line-height: 1.3;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+}
+.project-main { padding: 1.5rem; min-width: 0; }
+.section .project-title { margin: 0 0 .5rem; font-size: 1.3rem; }
+.project-description p { margin: 0; }
+
+.project-label {
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+  margin-bottom: .75rem;
+}
+.project-supervisors {
+  padding: 1.5rem;
+  border-left: 1px solid var(--border);
+}
+/* Always a 2 x 3 grid (two across, three down), so every supervisor area has the same size; six fill it. */
+.project-supervisors ul {
+  display: grid;
+  grid-template-columns: repeat(2, var(--sup-cell));
+  grid-template-rows: repeat(3, var(--sup-row));
+  gap: .75rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.project-supervisors li {
+  text-align: center;
+  font-size: .85rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.project-supervisors .person-photo {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto .4rem;
+  border-width: 2px;
+  font-size: 1.1rem;
+}
+
+/* Medium screens: supervisors move under the title and description. */
+@media (max-width: 56rem) {
+  .project { grid-template-columns: 9rem 1fr; }
+  .project-phd { grid-row: span 2; }
+  .project-supervisors { border-left: 0; padding-top: 0; }
+  /* Under the description there's room to go wide: three across, two down. */
+  .project-supervisors ul { grid-template-columns: repeat(3, var(--sup-cell)); grid-template-rows: repeat(2, var(--sup-row)); }
+}
+/* Phones: PhD photo and name become a row at the top. */
+@media (max-width: 36rem) {
+  .project { grid-template-columns: 1fr; }
+  .project-phd {
+    grid-row: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: .75rem;
+    padding: .75rem 1rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-phd-photo { flex: none; width: 4rem; height: 4rem; min-height: 0; border-radius: 50%; }
+  .project-phd-initials { font-size: 1.3rem; background: var(--card); }
+  .project-phd-name { padding: 0; border: 0; background: none; text-align: left; }
+  .project-main { padding: 1rem 1rem .75rem; }
+  .project-supervisors { padding: 0 1rem 1rem; }
+  /* No need to reserve empty rows on a phone. */
+  .project-supervisors ul { grid-template-columns: repeat(3, 1fr); grid-template-rows: none; }
+}
+
+/* Publications */
+.publications { list-style: none; margin: 0; padding: 0; }
+.publications li {
+  padding: .75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.publications li p { margin: 0 0 .15rem; }
+.links { display: flex; gap: 1rem; font-size: .9rem; }
+
+/* Book club carousel */
+.carousel { --card-w: min(34rem, 86vw); margin-top: 1.5rem; }
+.carousel-track {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* Padding lets the first and last card sit in the center too. */
+  padding: .5rem calc(50% - var(--card-w) / 2) 1rem;
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  position: relative;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.session {
+  flex: 0 0 var(--card-w);
+  scroll-snap-align: center;
+  display: flex;
+  gap: 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  padding: 1.25rem;
+  transition: opacity .2s, border-color .2s, box-shadow .2s;
+}
+.session[data-state="past"] { opacity: .7; }
+.session.is-current {
+  border-color: var(--heading);
+  box-shadow: 0 0 0 1px var(--heading), 0 6px 18px rgba(53, 147, 208, .15);
+}
+.session-when {
+  flex: 0 0 5rem;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  padding-right: 1rem;
+}
+.session-day { display: block; font-size: 2rem; font-weight: 700; line-height: 1; color: var(--heading); }
+.session-month { display: block; font-size: .85rem; color: var(--muted); }
+.session-body { flex: 1; min-width: 0; }
+.session-status {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+  margin-bottom: .35rem;
+}
+.session-status:empty { display: none; }
+.session.is-current .session-status { color: var(--accent); }
+.session dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .25rem 1rem;
+  margin: .75rem 0 0;
+}
+.session dt { font-weight: 600; color: var(--muted); }
+.session dd { margin: 0; }
+.session dd p { margin: 0; }
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+}
+.carousel-controls button {
+  font: inherit;
+  font-size: .9rem;
+  color: var(--fg);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: .35rem .9rem;
+  cursor: pointer;
+}
+.carousel-controls button:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 36rem) {
+  .session { flex-direction: column; gap: .75rem; }
+  .session-when { flex: none; border-right: 0; padding-right: 0; text-align: left; }
+  .session-day, .session-month { display: inline; font-size: 1rem; }
+  .session-day { margin-right: .3em; }
+  .session dl { grid-template-columns: 1fr; }
+}
+
+/* Footer */
+.footer {
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: .9rem;
+}

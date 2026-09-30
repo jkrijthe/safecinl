@@ -1,0 +1,68 @@
+# Causal book club sessions.
+# The order in this file doesn't matter: sessions are sorted by date. On the site
+# they form a horizontal carousel (past on the left, future on the right) that
+# opens on the current session. A session stays current until it ends, then the
+# carousel moves on to the next one automatically.
+#
+# Fields:
+#   date:      "YYYY-MM-DD" (uses the default time below), or "YYYY-MM-DDTHH:MM" for a
+#              different start time (quoted; times are in the timeZone set in hugo.toml)
+#   end:       optional end time, "HH:MM"; defaults to the default end below
+#              (or two hours after a custom start time)
+#   title:     optional; shown as the card title. Defaults to the reading's title.
+#              Use it for sessions without a reading.
+#   location:  optional; overrides the default location below
+#   reading:   optional
+#     title:   paper or chapter title
+#     authors: optional
+#     link:    optional link to the resource
+#   presenter: who leads the session
+#   format:    e.g. "Presentation", "Discussion"
+#   prepare:   what attendees should prepare (Markdown allowed)
+
+description: >
+  In the causal book club we read and discuss a paper or book chapter on causal
+  inference together. Everyone is welcome: come prepared and join the discussion.
+
+# Used for every session unless the session sets its own time or location.
+defaults:
+  time: "10:00"
+  end: "11:00"
+  location: "28 Informatica 6.W950 Fawcett"
+
+sessions:
+  - date: "2026-09-02"
+    title: "Kick-off for the new academic year"
+
+  - date: "2026-09-16"
+    reading:
+      title: "Fundamentals of Causal Inference with R, chapter 3"
+      authors: "Babette A. Brumback"
+      # link: ""
+    presenter: "Isak Aslund"
+    format: "Presentation"
+    prepare: "Everyone reads chapter 3."
+
+  - date: "2026-09-23"
+    reading:
+      title: "Fundamentals of Causal Inference with R, chapter 5"
+      authors: "Babette A. Brumback"
+      # link: ""
+    presenter: "Matej Havelka"
+    format: "Presentation about causal discovery"
+    prepare: "Everyone reads chapter 5."
+
+  - date: "2026-09-30"
+    reading:
+      title: "Detecting Hidden Confounding in Observational Data Using Multiple Environments"
+      authors: "Rickard Karlsson"
+      # link: ""
+    presenter: "Matej Havelka"
+    format: "Discussion"
+    prepare: "Read the paper."
+
+  - date: "2026-10-07"
+    title: "Two-phase experimentation"
+    presenter: "Francesco Di Giuseppe"
+    format: "Presentation"
+    prepare: "No required reading."

@@ -1,0 +1,10 @@
+{{- /* Looks up a person by name in data/people.yaml. Falls back to just the name (shown with initials). */}}
+{{- $p := hugo.Data.people }}
+{{- $all := slice }}
+{{- range slice "supervisors" "phds" "other_members" }}
+  {{- with index $p . }}{{ $all = $all | append . }}{{ end }}
+{{- end }}
+{{- $match := where $all "name" . }}
+{{- $person := dict "name" . }}
+{{- with $match }}{{ $person = index . 0 }}{{ end }}
+{{- return $person }}

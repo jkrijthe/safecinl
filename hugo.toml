@@ -1,0 +1,39 @@
+baseURL = "https://example.org/"
+languageCode = "en-us"
+title = "Safe Causal Inference consortium"
+# Time zone for book club dates written without an offset.
+timeZone = "Europe/Amsterdam"
+
+# Single-page site: no taxonomies, RSS or sitemap needed.
+disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
+
+[params]
+  description = "Making observational causal inference safer to use, by bridging the gap between conclusions based on expert knowledge and data-driven methods."
+  # Short line shown under the title in the hero section.
+  tagline = "Making observational causal inference safer to use, by bridging the gap between conclusions based on expert knowledge and data-driven methods."
+  contactEmail = "J.H.Krijthe@tudelft.nl"
+
+# Sections in the top navigation; each url must match a section id in layouts/.
+[[menus.main]]
+  name = "About"
+  url = "#about"
+  weight = 10
+[[menus.main]]
+  name = "People"
+  url = "#people"
+  weight = 20
+[[menus.main]]
+  name = "Projects"
+  url = "#projects"
+  weight = 25
+[[menus.main]]
+  name = "Publications"
+  url = "#publications"
+  weight = 30
+[[menus.main]]
+  name = "Book club"
+  url = "#bookclub"
+  weight = 40
+
+[markup.goldmark.renderer]
+  unsafe = true

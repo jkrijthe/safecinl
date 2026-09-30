@@ -1,0 +1,4 @@
+{{- /* Parses a book club date/time. Accepts "2026-09-30", "2026-09-30T15:30" and full timestamps. */}}
+{{- $s := . }}
+{{- if findRE `^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$` $s }}{{ $s = print $s ":00" }}{{ end }}
+{{- return time.AsTime $s }}

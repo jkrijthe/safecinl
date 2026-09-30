@@ -1,0 +1,53 @@
+<section id="projects" class="section">
+  <div class="container">
+    <h2>Projects</h2>
+    {{- with hugo.Data.projects }}
+    <div class="projects">
+      {{- range . }}
+      {{- $phd := partial "func/find-person.html" (.phd | default "To be announced") }}
+      <article class="card project">
+        {{- /* PhD candidate: full-height strip on the left. */}}
+        <div class="project-phd">
+          {{- $img := "" }}
+          {{- with $phd.photo }}{{ $img = resources.Get (printf "images/people/%s" .) }}{{ end }}
+          {{- if $img }}
+            {{- if ne $img.MediaType.SubType "svg" }}{{ $img = $img.Fill "320x440 Top webp" }}{{ end }}
+            <img class="project-phd-photo" src="{{ $img.RelPermalink }}" alt="Photo of {{ $phd.name }}" loading="lazy">
+          {{- else }}
+            {{- $parts := split $phd.name " " }}
+            {{- $initials := substr (index $parts 0) 0 1 }}
+            {{- if gt (len $parts) 1 }}{{ $initials = print $initials (substr (index $parts (sub (len $parts) 1)) 0 1) }}{{ end }}
+            <span class="project-phd-photo project-phd-initials" aria-hidden="true">{{ upper $initials }}</span>
+          {{- end }}
+          <p class="project-phd-name">
+            {{- if $phd.url }}<a href="{{ $phd.url }}">{{ $phd.name }}</a>{{ else }}{{ $phd.name }}{{ end -}}
+          </p>
+        </div>
+
+        <div class="project-main">
+          <h3 class="project-title">Project {{ with .number }}{{ . }}: {{ end }}{{ .title }}</h3>
+          {{- with .description }}<div class="project-description">{{ . | markdownify }}</div>{{ end }}
+        </div>
+
+        {{- with .supervisors }}
+        <div class="project-supervisors">
+          <p class="project-label">Supervisors</p>
+          <ul>
+            {{- range . }}
+            {{- $s := partial "func/find-person.html" . }}
+            <li>
+              {{- partial "person-photo.html" $s }}
+              <span>{{ if $s.url }}<a href="{{ $s.url }}">{{ $s.name }}</a>{{ else }}{{ $s.name }}{{ end }}</span>
+            </li>
+            {{- end }}
+          </ul>
+        </div>
+        {{- end }}
+      </article>
+      {{- end }}
+    </div>
+    {{- else }}
+    <p class="muted">Projects will be listed here soon.</p>
+    {{- end }}
+  </div>
+</section>

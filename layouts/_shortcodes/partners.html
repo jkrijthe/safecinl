@@ -1,0 +1,16 @@
+{{- /* Row of partner logos from data/partners.yaml. Use in content as {{< partners >}}. */}}
+{{- with hugo.Data.partners }}
+<ul class="partners">
+  {{- range . }}
+  {{- $logo := "" }}
+  {{- with .logo }}{{ $logo = resources.Get (printf "images/partners/%s" .) }}{{ end }}
+  {{- if and $logo (ne $logo.MediaType.SubType "svg") }}{{ $logo = $logo.Resize "x120" }}{{ end }}
+  <li>
+    <a href="{{ .url }}" title="{{ .name }}">
+      {{- if $logo }}<img src="{{ $logo.RelPermalink }}" alt="{{ .name }}">
+      {{- else }}<span class="partner-name">{{ .name }}</span>{{ end -}}
+    </a>
+  </li>
+  {{- end }}
+</ul>
+{{- end }}

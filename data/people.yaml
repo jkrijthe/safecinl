@@ -1,0 +1,27 @@
+# People in the consortium, grouped by role.
+# Fields: name (required), affiliation, topic, url (personal/institutional page),
+#         photo: file name of a picture in assets/images/people/ (e.g. "jane-doe.jpg").
+#                Any size or shape works: it's cropped to a square automatically.
+#                Without a photo, the person's initials are shown.
+
+supervisors:
+  - name: "Jesse Krijthe"
+    affiliation: "TU Delft"
+    url: "https://www.jessekrijthe.com/"
+    photo: "jesse-krijthe.png"
+  - name: "Another Supervisor"
+    affiliation: "University B"
+
+phds:
+  - name: "Matej Havelka"
+    affiliation: "TU Delft"
+    topic: "Project 1.1: Conditional Exchangeability"
+    photo: "matej-havelka.png"
+#    url: "https://example.org"
+  - name: "Another PhD Candidate"
+    affiliation: "University B"
+    topic: "Short description of the PhD project"
+
+other_members:
+  - name: "Other Member"
+    affiliation: "Institute C"

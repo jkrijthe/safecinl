@@ -1,0 +1,18 @@
+{{- /* Logo: put a file named logo.svg / logo.png / logo.jpg / logo.webp in assets/images/. */}}
+{{- $logo := resources.GetMatch "images/logo.*" }}
+{{- if and $logo (ne $logo.MediaType.SubType "svg") }}
+  {{- $logo = $logo.Resize "x72" }}
+{{- end }}
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top">
+      {{- with $logo }}<img class="brand-logo" src="{{ .RelPermalink }}" alt="">{{ end }}
+      <span class="brand-name">{{ site.Title }}</span>
+    </a>
+    <ul>
+      {{- range site.Menus.main }}
+      <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{- end }}
+    </ul>
+  </div>
+</nav>
