@@ -39,7 +39,7 @@ sessions:
       title: "Fundamentals of Causal Inference with R, chapter 3"
       authors: "Babette A. Brumback"
       # link: ""
-    presenter: "Isak Aslund"
+    presenter: "Isak Åslund"
     format: "Presentation"
     prepare: "Everyone reads chapter 3."
 
@@ -64,5 +64,20 @@ sessions:
   - date: "2026-10-07"
     title: "Two-phase experimentation"
     presenter: "Francesco Di Giuseppe"
+    format: "Presentation"
+    prepare: "No required reading."
+
+  - date: "2026-10-14"
+    reading:
+      title: "Rank-Learner: Orthogonal Ranking of Treatment Effects"
+      authors: "Henri Arno, Dennis Frauen, Emil Javurek, Thomas Demeester, Stefan Feuerriegel"
+      link: "https://arxiv.org/abs/2602.03517"
+    presenter: "Isak Åslund"
+    format: "Presentation"
+    prepare: "Read the paper."
+
+  - date: "2026-10-21"
+    title: "Semiparametric theory"
+    presenter: "Lasse Veenstra"
     format: "Presentation"
     prepare: "No required reading."

@@ -1,14 +1,16 @@
-<section id="publications" class="section alt">
+{{- $pubs := hugo.Data.publications }}
+{{- if $pubs.enabled }}
+<section id="publications" class="section">
   <div class="container">
     <h2>Publications</h2>
-    {{- with hugo.Data.publications }}
+    {{- with $pubs.publications }}
       {{- $years := slice }}
       {{- range . }}{{ $years = $years | append .year }}{{ end }}
       {{- range sort (uniq $years) "value" "desc" }}
         {{- $year := . }}
         <h3>{{ $year }}</h3>
         <ol class="publications">
-          {{- range where hugo.Data.publications "year" $year }}
+          {{- range where $pubs.publications "year" $year }}
           <li>
             <p class="card-title">
               {{- if .url }}<a href="{{ .url }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end -}}
@@ -30,3 +32,4 @@
     {{- end }}
   </div>
 </section>
+{{- end }}

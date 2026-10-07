@@ -1,16 +1,20 @@
 # Publications, shown grouped by year (newest first).
+# Set enabled to false to hide the section and its navigation link.
 # Fields: title, authors, venue, year (required), url (link to paper), pdf, code (optional).
 
-- title: "An example paper title"
-  authors: "A. Author, B. Author, C. Author"
-  venue: "Conference on Example Research"
-  year: 2026
-  url: "https://example.org/paper"
-  code: "https://github.com/example/repo"
+enabled: false
 
-- title: "Another example paper"
-  authors: "D. Author, A. Author"
-  venue: "Journal of Examples"
-  year: 2025
-  url: "https://example.org/paper2"
-  pdf: "https://example.org/paper2.pdf"
+publications:
+  - title: "An example paper title"
+    authors: "A. Author, B. Author, C. Author"
+    venue: "Conference on Example Research"
+    year: 2026
+    url: "https://example.org/paper"
+    code: "https://github.com/example/repo"
+
+  - title: "Another example paper"
+    authors: "D. Author, A. Author"
+    venue: "Journal of Examples"
+    year: 2025
+    url: "https://example.org/paper2"
+    pdf: "https://example.org/paper2.pdf"

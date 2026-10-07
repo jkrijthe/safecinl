@@ -14,6 +14,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
   contactEmail = "J.H.Krijthe@tudelft.nl"
 
 # Sections in the top navigation; each url must match a section id in layouts/.
+# An item with params.data is hidden when that data file has `enabled: false`.
 [[menus.main]]
   name = "About"
   url = "#about"
@@ -30,10 +31,18 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
   name = "Publications"
   url = "#publications"
   weight = 30
+  [menus.main.params]
+    data = "publications"
 [[menus.main]]
   name = "Book club"
   url = "#bookclub"
   weight = 40
+[[menus.main]]
+  name = "Meet us"
+  url = "#meet-us"
+  weight = 27
+  [menus.main.params]
+    data = "talks"
 
 [markup.goldmark.renderer]
   unsafe = true

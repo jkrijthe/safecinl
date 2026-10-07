@@ -11,6 +11,7 @@
     </a>
     <ul>
       {{- range site.Menus.main }}
+      {{- with .Params.data }}{{ if not (index hugo.Data .).enabled }}{{ continue }}{{ end }}{{ end }}
       <li><a href="{{ .URL }}">{{ .Name }}</a></li>
       {{- end }}
     </ul>

@@ -1,0 +1,27 @@
+{{- $t := hugo.Data.talks }}
+{{- if $t.enabled }}
+<section id="meet-us" class="section">
+  <div class="container">
+    <h2>Meet us</h2>
+    {{- with $t.description }}<div class="prose">{{ . | markdownify }}</div>{{ end }}
+  </div>
+
+  {{- with $t.talks }}
+  {{- /* Which talk is current is decided in the browser by assets/js/carousel.js. */}}
+  <div class="carousel" data-carousel>
+    <div class="carousel-track" tabindex="0" role="region" aria-label="Talks and events">
+      {{- range sort . "date" }}{{ partial "talk.html" . }}{{ end }}
+    </div>
+    <div class="container carousel-controls">
+      <button type="button" data-prev aria-label="Previous talk">&larr;</button>
+      <button type="button" data-current>Next talk</button>
+      <button type="button" data-next aria-label="Next talk">&rarr;</button>
+    </div>
+  </div>
+  {{- else }}
+  <div class="container">
+    <p class="muted">No talks planned yet. Check back soon.</p>
+  </div>
+  {{- end }}
+</section>
+{{- end }}

@@ -1,0 +1,47 @@
+# Talks and events with consortium members ("Meet us" section).
+# Set enabled to false to hide the section and its navigation link.
+# The order in this file doesn't matter: talks are sorted by date and shown in a
+# carousel like the book club, opening on the next upcoming talk.
+#
+# Fields:
+#   date:      "YYYY-MM-DD" for an all-day event, or "YYYY-MM-DDTHH:MM" for a talk
+#              at a set time (quoted; times are in the timeZone set in hugo.toml)
+#   end:       optional; "YYYY-MM-DD" for the last day of a multi-day event, or
+#              "HH:MM" for the end time of a talk (defaults to one hour after the start)
+#   title:     title of the talk
+#   link:      optional link for the title (slides, abstract, recording)
+#   speaker:   who from the consortium is giving the talk
+#   event:     optional name of the conference, workshop or seminar
+#   eventLink: optional link to the event's page
+#   location:  optional city, venue or "Online"
+#   notes:     optional extra line (Markdown allowed)
+
+enabled: false
+
+description: >
+  Upcoming events and talks some of us will be part of.
+
+talks:
+  - date: "2026-09-18"
+    title: "Example talk title"
+    speaker: "Speaker Name"
+    event: "Example Workshop on Causal Inference"
+    eventLink: "https://example.org/workshop"
+    location: "Amsterdam"
+
+  - date: "2026-11-04"
+    end: "2026-11-06"
+    title: "Example poster title"
+    speaker: "Speaker Name"
+    event: "Example Conference 2026"
+    eventLink: "https://example.org/conference"
+    location: "Utrecht"
+    notes: "Poster session on Thursday afternoon."
+
+  - date: "2026-12-10T14:00"
+    end: "15:00"
+    title: "Example seminar talk"
+    link: "https://example.org/abstract"
+    speaker: "Speaker Name"
+    event: "Example Seminar Series"
+    location: "Online"

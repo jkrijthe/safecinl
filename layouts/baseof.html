@@ -11,7 +11,7 @@
   {{- with resources.Get "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
   {{- end }}
-  {{- with resources.Get "js/bookclub.js" | minify | fingerprint }}
+  {{- with resources.Get "js/carousel.js" | minify | fingerprint }}
   <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
   {{- end }}
 </head>

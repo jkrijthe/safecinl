@@ -6,7 +6,7 @@
   </div>
 
   {{- with $bc.sessions }}
-  {{- /* Which session is current is decided in the browser by assets/js/bookclub.js. */}}
+  {{- /* Which session is current is decided in the browser by assets/js/carousel.js. */}}
   <div class="carousel" data-carousel>
     <div class="carousel-track" tabindex="0" role="region" aria-label="Book club sessions">
       {{- range sort . "date" }}{{ partial "bookclub-session.html" . }}{{ end }}

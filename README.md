@@ -1,12 +1,13 @@
 # Safe Causal Inference consortium website
 
-This repository holds the website of the Safe Causal Inference consortium. It's a single-page site built with [Hugo](https://gohugo.io/). Visitors scroll through five sections:
+This repository holds the website of the Safe Causal Inference consortium. It's a single-page site built with [Hugo](https://gohugo.io/). Visitors scroll through six sections:
 
 1. **About**: who we are and what we do, with links to our NWO project page and the Causal Inference for AI meetings, and the logos of the partner institutions.
 2. **People**: the supervisors, PhD candidates and other consortium members, each with a photo.
 3. **Projects**: one block per PhD project. Each block has the PhD candidate's photo and name down the left side, then the project title ("Project 1.1: …") and a short description, then the supervisors side by side on the right.
-4. **Publications**: papers from the consortium, grouped by year, with links to the paper, PDF and code.
-5. **Causal book club**: a horizontal carousel of book club sessions, past on the left and planned on the right. Each card lists the date, time and place, the paper or chapter we're reading (with an optional link), who leads the session, and what to prepare.
+4. **Meet us**: a horizontal carousel of upcoming events and talks that consortium members take part in.
+5. **Publications**: papers from the consortium, grouped by year, with links to the paper, PDF and code.
+6. **Causal book club**: a horizontal carousel of book club sessions, past on the left and planned on the right. Each card lists the date, time and place, the paper or chapter we're reading (with an optional link), who leads the session, and what to prepare.
 
 The site uses its own small layout and stylesheet, so it needs no external theme or submodules.
 
@@ -23,6 +24,7 @@ Most updates only touch the files in `data/`. You don't need to edit any HTML.
 | Partner institutions and their logos    | `data/partners.yaml`, `assets/images/partners/` |
 | Publications                            | `data/publications.yaml` |
 | Book club description and sessions      | `data/bookclub.yaml`    |
+| Talks and events ("Meet us")            | `data/talks.yaml`       |
 | Logo                                    | `assets/images/logo.*`  |
 | Photos of people                        | `assets/images/people/` |
 | Colors                                  | top of `assets/css/main.css` |
@@ -61,6 +63,25 @@ How the carousel behaves:
 - The visitor's browser decides which session is current, from their own clock. There's no need to rebuild the site when a session passes.
 - While the mouse is over one of the session cards, the scroll wheel moves through sessions left and right instead of scrolling the page. Scrolling down goes to later sessions, and scrolling up goes to earlier ones. Past the first or last session, the page scrolls normally again.
 - Visitors can also use the arrow buttons, the "Current session" button, the arrow keys, or swipe on touch screens.
+
+### Adding a talk
+
+Add an entry under `talks` in `data/talks.yaml`. The comments at the top of that file list all fields:
+
+```yaml
+  - date: "2026-11-04"                   # all-day event
+    end: "2026-11-06"                    # optional: last day of a multi-day event
+    title: "Title of the talk"
+    link: "https://example.org/slides"   # optional
+    speaker: "Name of speaker"
+    event: "Name of the conference"      # optional
+    eventLink: "https://example.org"     # optional
+    location: "Utrecht"                  # optional
+```
+
+For a talk at a set time, use `date: "2026-12-10T14:00"` and `end: "15:00"`. Without an `end`, a talk is assumed to last one hour.
+
+The carousel works like the book club one: talks are sorted by date, and the page opens on the next talk that hasn't ended yet. Set `enabled: false` at the top of the file to hide the section and its link in the navigation.
 
 ### Logo
 
@@ -103,6 +124,8 @@ The partner institutions in the About section are listed in `data/partners.yaml`
 
 See the comments at the top of `data/publications.yaml` for the available fields. Only `title` and `year` are required.
 
+The section is hidden for now. Set `enabled: true` in `data/publications.yaml` to show it and its link in the navigation.
+
 ## Running locally
 
 Install [Hugo extended](https://gohugo.io/installation/) (v0.146 or newer), then run:
@@ -126,7 +149,7 @@ hugo --gc --minify
 ```
 hugo.toml                 site configuration and navigation menu
 content/_index.md         introduction text (About section)
-data/                     people, projects, partners, publications and book club sessions
+data/                     people, projects, partners, publications, book club sessions and talks
 layouts/baseof.html       page skeleton (head, nav, footer)
 layouts/home.html         the single page: hero + all sections
 layouts/_partials/        one template per section
@@ -135,5 +158,5 @@ assets/images/            logo (logo.svg / logo.png)
 assets/images/people/     photos of people (referenced from data/people.yaml)
 assets/images/partners/   partner institution logos (referenced from data/partners.yaml)
 layouts/_shortcodes/      {{< partners >}} logo row used in content/_index.md
-assets/js/bookclub.js     book club carousel (wheel scrolling, current session)
+assets/js/carousel.js     book club and talks carousels (wheel scrolling, current card)
 ```

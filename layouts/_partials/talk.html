@@ -1,0 +1,51 @@
+{{- /*
+  A date without a time is an all-day event; `end` can then be the last day of a
+  multi-day event. A talk with a time lasts until `end` ("HH:MM"), or one hour.
+*/}}
+{{- $allDay := not (strings.Contains .date "T") }}
+{{- $start := partial "func/parse-time.html" .date }}
+{{- $end := $start.Add (time.ParseDuration (cond $allDay "24h" "1h")) }}
+{{- with .end }}
+  {{- if $allDay }}
+    {{- $end = (partial "func/parse-time.html" .).Add (time.ParseDuration "24h") }}
+  {{- else }}
+    {{- $end = partial "func/parse-time.html" (print (substr $.date 0 10) "T" .) }}
+  {{- end }}
+{{- end }}
+{{- $iso := "2006-01-02T15:04:05Z07:00" }}
+{{- $lastDay := $end.Add (time.ParseDuration "-24h") }}
+{{- $multiDay := and $allDay .end (ne (.end) (substr .date 0 10)) }}
+<article class="session" data-start="{{ $start.Format $iso }}" data-end="{{ $end.Format $iso }}"{{ if $allDay }} data-all-day{{ end }}>
+  <div class="session-when">
+    <span class="session-day">{{ $start | time.Format "2" }}</span>
+    <span class="session-month">{{ $start | time.Format "Jan 2006" }}</span>
+  </div>
+  <div class="session-body">
+    <span class="session-status" data-status></span>
+    <p class="card-title">
+      {{- if .link }}<a href="{{ .link }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end -}}
+    </p>
+    {{- with .speaker }}<p class="muted">{{ . }}</p>{{ end }}
+    <dl>
+      <dt>When</dt>
+      <dd>
+        {{- if $multiDay }}
+          {{- if eq ($start.Format "2006-01") ($lastDay.Format "2006-01") }}
+            {{- $start | time.Format "2" }}–{{ $lastDay | time.Format "2 January 2006" }}
+          {{- else }}
+            {{- $start | time.Format "2 January" }} – {{ $lastDay | time.Format "2 January 2006" }}
+          {{- end }}
+        {{- else if $allDay }}{{ $start | time.Format "Monday 2 January 2006" }}
+        {{- else }}{{ $start | time.Format "Monday 2 January 2006, 15:04" }}
+          {{- with .end }}–{{ $end | time.Format "15:04" }}{{ end }}
+        {{- end -}}
+      </dd>
+      {{- with .event }}
+      <dt>Event</dt>
+      <dd>{{ if $.eventLink }}<a href="{{ $.eventLink }}">{{ . }}</a>{{ else }}{{ . }}{{ end }}</dd>
+      {{- end }}
+      {{- with .location }}<dt>Where</dt><dd>{{ . }}</dd>{{ end }}
+      {{- with .notes }}<dt>Notes</dt><dd>{{ . | markdownify }}</dd>{{ end }}
+    </dl>
+  </div>
+</article>

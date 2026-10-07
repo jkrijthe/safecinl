@@ -1,13 +1,10 @@
-// Book club carousel.
-// - Opens centered on the current session: the first one that hasn't ended yet.
-// - Moves on to the next session automatically when the current one ends.
-// - While the pointer is over a session card, vertical wheel scrolling steps
-//   through sessions horizontally. At the first/last session the page scrolls
-//   normally again, so visitors never get stuck.
-(function () {
-  const root = document.querySelector("[data-carousel]");
-  if (!root) return;
-
+// Carousels of dated cards (book club sessions, talks). Each [data-carousel]:
+// - Opens centered on the current card: the first one that hasn't ended yet.
+// - Moves on to the next card automatically when the current one ends.
+// - While the pointer is over a card, vertical wheel scrolling steps through
+//   cards horizontally. At the first/last card the page scrolls normally again,
+//   so visitors never get stuck.
+document.querySelectorAll("[data-carousel]").forEach((root) => {
   const track = root.querySelector(".carousel-track");
   const cards = Array.from(track.querySelectorAll(".session"));
   const sessions = cards.map((el) => ({
@@ -143,4 +140,4 @@
   });
 
   tick(true);
-})();
+});
