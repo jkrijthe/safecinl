@@ -15,7 +15,9 @@
 #   reading:   optional
 #     title:   paper or chapter title
 #     authors: optional
-#     link:    optional link to the resource
+#     link:    optional link to the resource: a full https:// URL, or a file in the
+#              repo under assets/, e.g. "files/bookclub/notes.pdf" for
+#              assets/files/bookclub/notes.pdf (no leading slash)
 #   presenter: who leads the session
 #   format:    e.g. "Presentation", "Discussion"
 #   prepare:   what attendees should prepare (Markdown allowed)
@@ -77,7 +79,20 @@ sessions:
     prepare: "Read the paper."
 
   - date: "2026-10-21"
-    title: "Semiparametric theory"
+    reading:
+      title: "Semiparametric theory"
+      link: "files/bookclub/lasse_semiparametric_theory_notes.pdf"
     presenter: "Lasse Veenstra"
     format: "Presentation"
     prepare: "No required reading."
+
+  - date: "2026-10-28"
+    reading:
+      title: "Nonparametric bounds on treatment effects (Manski bounds)"
+      authors: "Charles Manski"
+      link: "https://ipcid.org/evaluation/outros_temas/Manski%20-%20Nonparametric%20Bounds.pdf"
+    presenter: "Matej Havelka"
+    format: "Presentation"
+    prepare: "Read the paper."
+
+#  - date: "2026-11-04"

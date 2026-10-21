@@ -21,6 +21,12 @@
 {{- with $endStr }}{{ $end = partial "func/parse-time.html" . }}{{ end }}
 {{- $iso := "2006-01-02T15:04:05Z07:00" }}
 {{- $title := or .title .reading.title }}
+{{- /* A link to a file in assets/ (e.g. "files/bookclub/notes.pdf") is published with the site. */}}
+{{- $link := "" }}
+{{- with .reading.link }}
+  {{- $link = . | relURL }}
+  {{- if not (strings.Contains . "://") }}{{ with resources.Get . }}{{ $link = .RelPermalink }}{{ end }}{{ end }}
+{{- end }}
 <article class="session" data-start="{{ $start.Format $iso }}" data-end="{{ $end.Format $iso }}"{{ if $allDay }} data-all-day{{ end }}>
   <div class="session-when">
     <span class="session-day">{{ $start | time.Format "2" }}</span>
@@ -29,7 +35,7 @@
   <div class="session-body">
     <span class="session-status" data-status></span>
     <p class="card-title">
-      {{- if and (not .title) .reading.link }}<a href="{{ .reading.link }}">{{ $title }}</a>{{ else }}{{ $title }}{{ end -}}
+      {{- if and (not .title) .reading.link }}<a href="{{ $link }}">{{ $title }}</a>{{ else }}{{ $title }}{{ end -}}
     </p>
     {{- if not .title }}{{ with .reading.authors }}<p class="muted">{{ . }}</p>{{ end }}{{ end }}
     <dl>
@@ -46,7 +52,7 @@
         {{- with .reading }}
         <dt>Reading</dt>
         <dd>
-          {{- if .link }}<a href="{{ .link }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}
+          {{- if .link }}<a href="{{ $link }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}
           {{- with .authors }} ({{ . }}){{ end -}}
         </dd>
         {{- end }}

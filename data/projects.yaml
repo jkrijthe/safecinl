@@ -8,7 +8,7 @@
 - number: "1.1"
   title: "Detecting and Quantifying Conditional Exchangeability Violations"
   phd: "Matej Havelka"
-  supervisors: ["Jesse Krijthe", "Supervisor A"]
+  supervisors: ["Jesse Krijthe", "Jeremy Labrecque", "Sebastian Gabel", "Saskia le Cessie"]
   description: >-
     Many causal analyses assume that there is no hidden confounding or selection bias beyond what has
     been adjusted for, which cannot be tested from a single dataset without further assumptions. Researchers instead rely
@@ -18,8 +18,8 @@
 
 - number: "1.2"
   title: "Detecting and Mitigating Positivity Violations"
-  phd: "PhD Candidate B"
-  supervisors: ["Jesse Krijthe", "Supervisor B"]
+  phd: "TBD"
+  supervisors: ["Jesse Krijthe", "Nan van Geloven", "Stéphanie van der Pas", "Ruth Keogh", "Dimitris Rizopoulos", "Frans Oliehoek"]
   description: >-
     Positivity requires that every treatment option has a real chance of occurring for every kind of
     individual we want to draw conclusions about. This project develops methods to detect positivity
@@ -29,8 +29,8 @@
 
 - number: "1.3"
   title: "Incorporating Assumption Uncertainty into Inference"
-  phd: "PhD Candidate C"
-  supervisors: ["Jesse Krijthe", "Supervisor A", "Supervisor C"]
+  phd: "TBD"
+  supervisors: ["Jesse Krijthe", "Jeremy Labrecque", "Aad van der Vaart", "Aurélie Lemmens"]
   description: >-
     Detecting assumption violations is not enough: the remaining uncertainty about the assumptions should
     also be reflected in the causal conclusions. This project uses nonparametric Bayesian methods to
@@ -41,19 +41,15 @@
 # Work package 2: Safe triangulation
 - number: "2.1"
   title: "Formalization of Triangulation"
-  phd: "PhD Candidate D"
-  supervisors: ["Supervisor B", "Supervisor C"]
+  phd: "Keling Wang"
+  supervisors: ["Jeremy Labrecque", "Nan van Geloven", "Aad van der Vaart", "Mirjam Knol", "Frans Oliehoek"]
   description: >-
-    Causal triangulation compares estimates from methods that rely on different sets of causal
-    assumptions, where agreement between them strengthens the evidence. This project formalizes what
-    counts as successful triangulation, including how to account for random error and for methods that
-    target slightly different causal questions. The resulting guidance also makes it possible to
-    pre-register triangulation studies.
+    Causal triangulation is traditionally understood as an exercise to answer causal questions with more certainty using causal studies of different designs. As a working definition, this leaves several formal aspects of such exercise undecided:  Where to ​head and how to proceed after collecting these causal studies? Is requiring causal studies to be 'independent' and/or 'diverse' necessary and sufficient for causal triangulation? Moreover, what is the role of statistical measures, and on what ground should we exercise causal triangulation at all? This project aims at formalizing causal triangulation and researching how one should conduct it. 
 
 - number: "2.2"
   title: "Integration of Triangulated Estimates"
-  phd: "PhD Candidate E"
-  supervisors: ["Jesse Krijthe", "Supervisor D"]
+  phd: "TBD"
+  supervisors: ["Jeremy Labrecque", "Jesse Krijthe", "Stéphanie van der Pas", "Sebastian Gabel", "Mirjam Knol", "Saskia le Cessie"]
   description: >-
     So far, triangulation has only compared estimates from different methods; this project investigates
     when and how their evidence can be combined. It develops ways to pool estimates from methods that rely
@@ -63,30 +59,22 @@
 # Work package 3: Safe performance assessment of conditional causal models
 - number: "3.1"
   title: "Performance Assessment for Conditional Average Treatment Effects"
-  phd: "PhD Candidate F"
-  supervisors: ["Jesse Krijthe", "Supervisor A", "Supervisor B", "Supervisor C", "Supervisor D", "Supervisor E"]
+  phd: "Isak Åslund"
+  supervisors: ["Jesse Krijthe", "Nan van Geloven", "Aad van der Vaart", "Aurélie Lemmens"]
   description: >-
-    Conditional average treatment effects (CATEs) describe how the effect of an intervention differs
-    between subgroups, but different estimators can give very different answers and the true effects are
-    never observed. This project studies how reliable current methods for evaluating CATE estimators are
-    when causal assumptions are violated, and makes them more robust. It also develops evaluation metrics
-    that target the decisions the estimates will be used for.
+    There is growing interest in personalizing treatment recommendations. This often relies on predictions of the Conditional Average Treatment Effect (CATE), defined as the expected treatment effect among individuals with a given set of characteristics. However, empirically evaluating the accuracy of such predictions is difficult as individual treatment effects are never observed. This project develops methods for trustworthy evaluation in randomized experiments and observational studies.
 
 - number: "3.2"
   title: "Performance Assessment for Predictions under Interventions"
-  phd: "PhD Candidate G"
-  supervisors: ["Jesse Krijthe", "Supervisor C"]
+  phd: "Laura Melo Teixeira"
+  supervisors: ["Nan van Geloven", "Jesse Krijthe", "Ruth Keogh", "Dimitris Rizopoulos"]
   description: >-
-    Sometimes the question is not the size of an effect, but the expected outcome under a specific
-    intervention, such as a patient's prognosis without treatment. This project develops doubly robust
-    performance measures for such predictions under interventions, including for time-to-event outcomes,
-    that work for internal as well as external validation. It also studies how sensitive these measures
-    are to unmeasured confounding and positivity violations.
+    The project focuses on how to reliably assess the performance of predictions under interventions, which is essential for determining whether such predictions can support decision-making and for comparing and selecting prediction models. It aims to develop doubly robust performance measures, particularly for time-to-event outcomes, and methods for assessing performance across internal and external data. The project also investigates the robustness of these measures to violations of causal assumptions.
 
 - number: "3.3"
   title: "Triangulation of Performance Assessment Methods for Conditional Causal Quantities"
-  phd: "PhD Candidate H"
-  supervisors: ["Supervisor A", "Supervisor D"]
+  phd: "TBD"
+  supervisors: ["Nan van Geloven", "Jeremy Labrecque", "Stéphanie van der Pas", "Sebastian Gabel", "Saskia le Cessie"]
   description: >-
     Evaluating a conditional causal model itself relies on causal assumptions about the evaluation data.
     This project investigates whether combining evaluations made under different assumptions, datasets
