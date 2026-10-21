@@ -23,6 +23,8 @@ supervisors:
     photo: "stephanie_vander_pas.JPG"
   - name: "Jeremy Labrecque"
     affiliation: "Erasmus MC"
+
+members:
   - name: "Ruth Keogh"
     affiliation: "London School of Hygiene & Tropical Medicine"
   - name: "Aurélie Lemmens"
