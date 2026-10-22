@@ -68,7 +68,7 @@
   title: "Performance Assessment for Conditional Average Treatment Effects"
   phd: "Isak Åslund"
   # supervisors: ["Nan van Geloven", "Jesse Krijthe", "Aad van der Vaart", "Aurélie Lemmens"]
-  supervisors: ["Nan van Geloven", "Jesse Krijthe", "Aad van der Vaart"]
+  supervisors: ["Nan van Geloven", "Jesse Krijthe", "Aad van der Vaart", "Saskia le Cessie"]
   description: >-
     There is growing interest in personalizing treatment recommendations. This often relies on predictions of the Conditional Average Treatment Effect (CATE), defined as the expected treatment effect among individuals with a given set of characteristics. However, empirically evaluating the accuracy of such predictions is difficult as individual treatment effects are never observed. This project develops methods for trustworthy evaluation in randomized experiments and observational studies.
 
