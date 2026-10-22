@@ -76,7 +76,7 @@
   title: "Performance Assessment for Predictions under Interventions"
   phd: "Laura Melo Teixeira"
   # supervisors: ["Nan van Geloven", "Jesse Krijthe", "Ruth Keogh", "Dimitris Rizopoulos"]
-  supervisors: ["Nan van Geloven", "Jesse Krijthe"]
+  supervisors: ["Nan van Geloven", "Jesse Krijthe", "Saskia le Cessie"]
   description: >-
     The project focuses on how to reliably assess the performance of predictions under interventions, which is essential for determining whether such predictions can support decision-making and for comparing and selecting prediction models. It aims to develop doubly robust performance measures, particularly for time-to-event outcomes, and methods for assessing performance across internal and external data. The project also investigates the robustness of these measures to violations of causal assumptions.
 
