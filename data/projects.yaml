@@ -29,8 +29,8 @@
 
 - number: "1.3"
   title: "Incorporating Assumption Uncertainty into Inference"
-  phd: "TBD"
-  supervisors: ["Jesse Krijthe", "Jeremy Labrecque", "Aad van der Vaart", "Aurélie Lemmens"]
+  phd: "Lasse Veenstra"
+  supervisors: ["Aad van der Vaart", "Jesse Krijthe", "Jeremy Labrecque", "Aurélie Lemmens"]
   description: >-
     Detecting assumption violations is not enough: the remaining uncertainty about the assumptions should
     also be reflected in the causal conclusions. This project uses nonparametric Bayesian methods to
@@ -60,7 +60,7 @@
 - number: "3.1"
   title: "Performance Assessment for Conditional Average Treatment Effects"
   phd: "Isak Åslund"
-  supervisors: ["Jesse Krijthe", "Nan van Geloven", "Aad van der Vaart", "Aurélie Lemmens"]
+  supervisors: ["Nan van Geloven", "Jesse Krijthe", "Aad van der Vaart", "Aurélie Lemmens"]
   description: >-
     There is growing interest in personalizing treatment recommendations. This often relies on predictions of the Conditional Average Treatment Effect (CATE), defined as the expected treatment effect among individuals with a given set of characteristics. However, empirically evaluating the accuracy of such predictions is difficult as individual treatment effects are never observed. This project develops methods for trustworthy evaluation in randomized experiments and observational studies.
 

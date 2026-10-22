@@ -54,7 +54,9 @@ phds:
     affiliation: "LUMC"
     photo: "isak_aslund.jpg"
     topic: "Project 3.1 CATE model assessment"
-
+  - name: "Lasse Veenstra"
+    affiliation: "TU Delft"
+    topic: "Project 1.3 Incorporating assumption uncertainty"
   - name: "Laura Melo Teixeira"
     affiliation: "LUMC"
     photo: "laura_melo_teixeira.jpg"
